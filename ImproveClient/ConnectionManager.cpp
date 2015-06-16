@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QTcpSocket>
 
+// my first commit
 
 ConnectionManager::ConnectionManager()
     : pMainWidget(nullptr)
