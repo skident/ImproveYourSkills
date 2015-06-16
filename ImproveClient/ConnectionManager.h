@@ -21,17 +21,24 @@ class ConnectionManager : public QMainWindow
 private:
     QWidget*        pMainWidget;
     QVBoxLayout*    pLayMain;
-    QHBoxLayout*    pLayConnection;
+    QVBoxLayout*    pLayConnection;
+    QHBoxLayout*    pLayButConnection;
     QHBoxLayout*    pLayClearSend;
 
     QPushButton*    pButConnect;
     QPushButton*    pButDisconnect;
     QPushButton*    pButSend;
     QPushButton*    pButClearAll;
+
     QTextBrowser*   pTextLog;
     QTextEdit*      pTextSendData;
+    QLineEdit*      pEditHost;
+    QLineEdit*      pEditPort;
+
     QLabel*         pLblLog;
     QLabel*         pLblSend;
+    QLabel*         pLblHost;
+    QLabel*         pLblPort;
 
     QTcpSocket*     pSocket;
 

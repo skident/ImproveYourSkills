@@ -9,6 +9,7 @@ ConnectionManager::ConnectionManager()
     : pMainWidget(nullptr)
     , pLayMain(nullptr)
     , pLayConnection(nullptr)
+    , pLayButConnection(nullptr)
     , pLayClearSend(nullptr)
     , pButConnect(nullptr)
     , pButDisconnect(nullptr)
@@ -16,13 +17,18 @@ ConnectionManager::ConnectionManager()
     , pButClearAll(nullptr)
     , pTextLog(nullptr)
     , pTextSendData(nullptr)
+    , pEditHost(nullptr)
+    , pEditPort(nullptr)
     , pLblLog(nullptr)
     , pLblSend(nullptr)
+    , pLblHost(nullptr)
+    , pLblPort(nullptr)
     , pSocket(nullptr)
 {
     pMainWidget     = new QWidget();
     pLayMain        = new QVBoxLayout();
-    pLayConnection  = new QHBoxLayout();
+    pLayConnection  = new QVBoxLayout();
+    pLayButConnection  = new QHBoxLayout();
     pLayClearSend   = new QHBoxLayout();
 
     pButConnect     = new QPushButton("Connect");
@@ -32,11 +38,22 @@ ConnectionManager::ConnectionManager()
 
     pTextLog        = new QTextBrowser();
     pTextSendData   = new QTextEdit();
+    pEditHost       = new QLineEdit("10.20.8.70");
+    pEditPort       = new QLineEdit("33333");
+
     pLblLog         = new QLabel("Received/Send data");
     pLblSend        = new QLabel("Send");
+    pLblHost        = new QLabel("Host:");
+    pLblPort        = new QLabel("Port:");
 
-    pLayConnection->addWidget(pButConnect);
-    pLayConnection->addWidget(pButDisconnect);
+    pLayButConnection->addWidget(pButConnect);
+    pLayButConnection->addWidget(pButDisconnect);
+
+    pLayConnection->addWidget(pLblHost);
+    pLayConnection->addWidget(pEditHost);
+    pLayConnection->addWidget(pLblPort);
+    pLayConnection->addWidget(pEditPort);
+    pLayConnection->addLayout(pLayButConnection);
 
     pLayClearSend->addWidget(pButClearAll);
     pLayClearSend->addWidget(pButSend);
@@ -44,12 +61,12 @@ ConnectionManager::ConnectionManager()
     pButDisconnect->setEnabled(false);
     pButSend->setEnabled(false);
 
+    pLayMain->addLayout(pLayConnection);
     pLayMain->addWidget(pLblLog);
     pLayMain->addWidget(pTextLog);
     pLayMain->addWidget(pLblSend);
     pLayMain->addWidget(pTextSendData);
     pLayMain->addLayout(pLayClearSend);
-    pLayMain->addLayout(pLayConnection);
 
     pMainWidget->setLayout(pLayMain);
     setCentralWidget(pMainWidget);
@@ -68,15 +85,31 @@ void ConnectionManager::doConnect()
 {
     qDebug() << "connecting...";
 
+    QString sHost = pEditHost->text();
+    QString sPort = pEditPort->text();
+
+    if (sHost.isEmpty() || sPort.isEmpty())
+    {
+        qDebug() << "Invalid connection parameters";
+        pTextLog->append("Invalid connection parameters");
+        return;
+    }
+
     // this is not blocking call
-    pSocket->connectToHost("192.168.1.101", 33333);
+    pSocket->connectToHost(sHost, sPort.toInt());
 
     // we need to wait...
     if(!pSocket->waitForConnected(5000))
     {
         qDebug() << "Error: " << pSocket->errorString();
+        pTextLog->append(QString("Error: ") + pSocket->errorString());
+        return;
     }
 
+    pTextLog->append("Connected to server");
+
+    pEditHost->setEnabled(false);
+    pEditPort->setEnabled(false);
     pButSend->setEnabled(true);
     pButDisconnect->setEnabled(true);
     pButConnect->setEnabled(false);
@@ -91,6 +124,10 @@ void ConnectionManager::doDisconnect()
         pSocket->close();
     }
 
+    pTextLog->append("Disconnected from server");
+
+    pEditHost->setEnabled(true);
+    pEditPort->setEnabled(true);
     pButSend->setEnabled(false);
     pButDisconnect->setEnabled(false);
     pButConnect->setEnabled(true);
