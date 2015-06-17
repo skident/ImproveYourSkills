@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<command action="add">Question</command>
+	<question>Question about C++</question>
+	<additional_data>
+		<image></image>
+		<audio></audio>
+	</additional_data>
+	<variants>
+		<variant id = "variant1">Answer #1<answer>
+		<variant id = "variant2">Answer #2<answer>
+		<variant id = "variant3">Answer #3<answer>
+		<variant id = "variant4">Answer #4<answer>
+		<answer>variant2</answer>
+	</variants>
+</request>
