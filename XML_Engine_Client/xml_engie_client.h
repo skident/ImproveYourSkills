@@ -10,10 +10,12 @@
 #include "map"
 #include "string"
 #include "string.h"
-#include "QString"
+#include <QString>
+#include <QVector>
 #include "QVector"
 #include "QVector.h"
-
+#include <QMap>
+// all obj must be Qxxx
 typedef enum
 {
     eViewName           =1,
@@ -25,8 +27,8 @@ typedef enum
     eEnd
 
 } eTags;
-typedef std::map<eTags,std::string> TMap;
-std::vector<std::string> TagNameList{"ViewName",
+typedef QMap<eTags,QString> TMap;
+QVector<QString> TagNameList{"ViewName",
                                        "TextMsgTop",
                                        "imgTop",
                                        "ButtomAnswerPos1",

@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += xml
+QT       += core
 
 QT       -= gui
 
@@ -15,10 +16,12 @@ TEMPLATE = lib
 
 DEFINES += XML_ENGIE_CLIENT_LIBRARY
 
-SOURCES += xml_engie_client.cpp
+SOURCES += \
+    xml_engie_client.cpp
 
-HEADERS += xml_engie_client.h\
-        xml_engie_client_global.h
+HEADERS +=\
+        xml_engie_client_global.h \
+    xml_engie_client.h
 
 unix {
     target.path = /usr/lib

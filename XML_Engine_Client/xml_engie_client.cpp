@@ -20,9 +20,10 @@ void XML_Engie_Client::setXMLBuff(QByteArray bArray)
 
 void XML_Engie_Client::hardCodeInit()
 {
-    for(auto& iter :TagMap)
+    eTags i = eViewName;
+    while(i!=eEnd)
     {
-        iter.second = TagNameList[iter.first];
+        TagMap[i] = TagNameList[i];
     }
 
 }
