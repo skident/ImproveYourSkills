@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<command id="1" action="delete">Question</command>
+</request>

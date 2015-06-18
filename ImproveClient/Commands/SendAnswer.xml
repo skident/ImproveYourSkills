@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<command action="check">Answer</command>
+	<question>1</question>
+	<variant>1</variant>
+</request>
