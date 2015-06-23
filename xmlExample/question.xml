@@ -1,0 +1,33 @@
+<question>
+	<BackGround>default</BackGround>
+	<TextBox>
+		<txt>QwestionImgTest</txt>
+		<posSize>x=50 y=5, h=100 w=100</posSize>
+		<font>default</font>
+		<KeyOnPush></KeyOnPush>
+	</TextBox>
+	<view>
+		<ImageName>QwestionImgTest</ImageName>
+		<posSize>x=10 y=10, h=100 w=100</posSize>
+		<SkinName>DefaultViewSkin</SkinName>
+		<KeyOnPush></KeyOnPush>
+	</view>
+	<button>
+		<name>Yes</name>
+		<posSize>x=10 y=200, h=10 w=10</posSize>
+		<SkinName>StandartButton</SkinName>
+		<KeyOnPush>Accept</KeyOnPush>
+	</button>
+	<button>
+		<name>No</name>
+		<posSize>x=25 y=200, h=10 w=10</posSize>
+		<SkinName>StandartButton</SkinName>
+		<KeyOnPush>Cancel</KeyOnPush>
+	</button>
+	<button>
+		<name>Cancel</name>
+		<posSize>x=40 y=200, h=10 w=10</posSize>
+		<SkinName>StandartButton</SkinName>
+		<KeyOnPush>Cancel</KeyOnPush>
+	</button>
+</question>
