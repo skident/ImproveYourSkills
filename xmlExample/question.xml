@@ -1,7 +1,7 @@
 <question>
 	<BackGround>default</BackGround>
 	<TextBox>
-		<txt>QwestionImgTest</txt>
+		<txt>did you see this picture</txt>
 		<posSize>x=50 y=5, h=100 w=100</posSize>
 		<font>default</font>
 		<KeyOnPush></KeyOnPush>
